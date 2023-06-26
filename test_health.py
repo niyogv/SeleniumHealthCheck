@@ -17,17 +17,11 @@ chrome_options.add_argument('--headless')
 eth_add=os.environ.get['ETH']
 pkey=os.environ.get['PKEY']
 
-first='beml'
-second='1958'
-third='mom'
-third_ans='lalitha'
-
 @pytest.mark.flaky(rerun=2)
 def test_dashboard():
     driver = webdriver.Chrome(optons=chrome_options)
     wait=WebDriverWait(driver,10)
-    driver.get('https://qadashboard.iome.ai/')
-    #self.driver.get('https://iome.ai')
+    driver.get(url)
     driver.maximize_window()
     time.sleep(1)
     driver.find_element(By.XPATH, '//button').click()
