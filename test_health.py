@@ -1,4 +1,5 @@
 import time
+import os
 from selenium import webdriver
 import pytest
 import random
@@ -6,9 +7,15 @@ import string
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 
-eth_add='0xdD2C08bAcd633B6aFA35c94d4719d72E11E24e98'
-pkey='9e8bbf0c1e25db5da151c3ac5df5363f74cce7bc78b6f1e1e66c4a3916861d4e'
+#Chrome running in headless mode
+url=os.environ['URL']
+chrome_options=Options()
+chrome_options.add_argument('--headless')
+
+eth_add=os.environ.get['ETH']
+pkey=os.environ.get['PKEY']
 
 first='beml'
 second='1958'
@@ -17,7 +24,7 @@ third_ans='lalitha'
 
 @pytest.mark.flaky(rerun=2)
 def test_dashboard():
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome(optons=chrome_options)
     wait=WebDriverWait(driver,10)
     driver.get('https://qadashboard.iome.ai/')
     #self.driver.get('https://iome.ai')
