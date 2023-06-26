@@ -15,7 +15,7 @@ chrome_options=Options()
 chrome_options.add_argument('--headless')
 
 eth_add=os.environ['ETH']
-pkey=os.environ['PKEY']
+pkey=os.environ.get['PKEY']
 
 @pytest.mark.flaky(rerun=2)
 def test_dashboard():
