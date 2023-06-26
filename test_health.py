@@ -28,7 +28,7 @@ def test_dashboard():
     username = ''.join(random.choices(string.ascii_lowercase, k=5))
     password_characters = string.ascii_uppercase + string.digits + string.punctuation +string.ascii_lowercase
     password_length=10
-    password = ''.join(random.samples(password_characters, password_length))
+    password = ''.join(random.sample(password_characters, password_length))
     time.sleep(1)
 
     #sign up page
