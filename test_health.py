@@ -9,7 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.options import Options
 
-#Chrome running in headless mod
+#Chrome running in headless mode
 url=os.environ['URL']
 chrome_options=Options()
 chrome_options.add_argument('--headless')
