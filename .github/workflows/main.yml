@@ -30,7 +30,7 @@ jobs:
         env:
             URL: ${{ secrets.URL }}
             ETH: ${{SECRETS.ETH}}
-            pkey: ${{secrets.PKEY}}
+            PKEY: ${{secrets.PKEY}}
         run: |
             pytest test_health.py
         
