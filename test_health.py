@@ -19,7 +19,7 @@ pkey=os.environ.get('PKEY')
 
 @pytest.mark.flaky(rerun=2)
 def test_dashboard():
-    driver = webdriver.Chrome(optons=chrome_options)
+    driver = webdriver.Chrome(options=chrome_options)
     wait=WebDriverWait(driver,10)
     driver.get(url)
     driver.maximize_window()
