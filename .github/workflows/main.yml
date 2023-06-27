@@ -31,6 +31,8 @@ jobs:
             URL: ${{ secrets.URL }}
             ETH: ${{SECRETS.ETH}}
             PKEY: ${{secrets.PKEY}}
+            NEW: ${{secrets.NEW}}
+            RETYPE: ${{secrets.RETYPE}}
         run: |
             pytest test_health.py
         
