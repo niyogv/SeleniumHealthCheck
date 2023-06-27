@@ -16,6 +16,8 @@ chrome_options.add_argument('--headless')
 
 eth_add=os.environ.get('ETH')
 pkey=os.environ.get('PKEY')
+new=os.environ.get('NEW')
+retype=os.environ.get('RETYPE')
 
 @pytest.mark.flaky(rerun=2)
 def test_dashboard():
@@ -28,7 +30,9 @@ def test_dashboard():
     username = ''.join(random.choices(string.ascii_lowercase, k=5))
     password_characters = string.ascii_uppercase + string.digits + string.punctuation +string.ascii_lowercase
     password_length=10
-    password = ''.join(random.sample(password_characters, password_length))
+    password = ''.join(random.choices(password_characters, k=password_length))
+    while not any(char.isdigit() for char in password) or not any(char.islower() for char in password) or not any(char.isupper() for char in password):
+            password = ''.join(random.choices(password_characters, k=password_length))
     time.sleep(1)
 
     #sign up page
@@ -187,3 +191,20 @@ def test_dashboard():
     description.send_keys(des)
     driver.find_element(By.XPATH, '//div[@class="pt-4"]/button').click()
     time.sleep(6)
+
+    #settings
+    driver.find_element(By.XPATH, '//div[@class="ant-space-item"]/img').click()
+    time.sleep(2)
+    driver.find_element(By.LINK_TEXT, 'Settings').click()
+    time.sleep(2)
+    check9=driver.find_element(By.XPATH, '//div[@class="mt-[62px]"]/div/article')
+    assert check9.text=='Settings', 'Setting page is broken'
+
+    #change passwrod
+    driver.find_element(By.XPATH, '//input[1]').send_keys(password)
+    driver.find_element(By.XPATH, '//input[2]').send_keys(new)
+    driver.find_element(By.XPATH, '//input[3]').send_keys(retype)
+    driver.find_element(By.XPATH, '//div[@class="pt-6"]/button').click()
+    time.sleep(12)
+    check10=driver.find_element(By.TAG_NAME, 'span')
+    assert check10.text=='Go to app'
