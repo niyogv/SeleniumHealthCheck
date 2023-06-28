@@ -36,8 +36,7 @@ jobs:
         run: |
             pytest test_health.py
       - name: send notification if pipeline fails
-        #if: failure()
-        if: success()
+        if: failure()
         env: 
           TEAMS: ${{secrets.TEAMS}}
         run: |
