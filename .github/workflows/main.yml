@@ -35,4 +35,11 @@ jobs:
             RETYPE: ${{secrets.RETYPE}}
         run: |
             pytest test_health.py
+      - name: send notification if pipeline fails
+        #if: failure()
+        if: success()
+        env: 
+          TEAMS: ${{secrets.TEAMS}}
+        run: |
+           curl -H "Content-Type: application/json" -d '{"text": "Qa health check Pipeline failed!"}' $TEAMS
         
